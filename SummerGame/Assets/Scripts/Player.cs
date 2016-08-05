@@ -42,4 +42,15 @@ public class Player : MonoBehaviour {
 	public void subtractAmountFromShardType(int amount, ShardType type){
 		shardCounts[(int)type] -= amount;
 	}
+
+
+	public string getShardAmounts(){
+		string temp = "| | ";
+
+		for (int i = 0; i < shardCounts.Length; i++) {
+			temp += shardCounts [i] + " " + Enum.GetName (typeof(ShardType), i) + " | | ";
+		}
+
+		return temp;
+	}
 }
