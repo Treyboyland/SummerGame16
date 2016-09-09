@@ -12,6 +12,10 @@ public class AbilityButton : MonoBehaviour {
 	public Text ability_text_box;
 	public string ability_name;
 
+	public AbilityType ability_type;
+	public Element element;
+
+
 	public Text description_text_box;
 	string temp_description;
 	public string description;
@@ -63,10 +67,12 @@ public class AbilityButton : MonoBehaviour {
 		for (int i = 0; i < Enum.GetNames (typeof(ShardType)).Length; i++) {
 			player.subtractAmountFromShardType (cost [i], (ShardType)i);
 		}
+
+		player.addAbility (getAbility());
 	}
 
 	/// <summary>
-	/// Determines if the player can afford the given ability by checkingthe player's amount of each type
+	/// Determines if the player can afford the given ability by checking the player's amount of each type
 	/// </summary>
 	/// <returns><c>true</c>, The player meets the required cost of the ability, <c>false</c> otherwise.</returns>
 	bool canAffordAbility(){
@@ -96,5 +102,9 @@ public class AbilityButton : MonoBehaviour {
 			return "FREE";
 		}
 		return temp.Substring (0, temp.Length - 2);
+	}
+
+	Ability getAbility(){
+		return new Ability (ability_name, cost, ability_type, element);
 	}
 }

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
 	public int[] shardCounts = new int[Enum.GetNames(typeof(ShardType)).Length];
+	public List<Ability> abilities = new List<Ability> (); 
+
 
 	// Use this for initialization
 	void Start () {
@@ -52,5 +55,26 @@ public class Player : MonoBehaviour {
 		}
 
 		return temp;
+	}
+
+	/// <summary>
+	/// Adds the given ability to the list of player abilities.
+	/// </summary>
+	/// <param name="ability">Ability.</param>
+	public void addAbility(Ability ability){
+		abilities.Add (ability);
+	}
+
+	/// <summary>
+	/// Removes the given ability from the list of player abilities.
+	/// </summary>
+	/// <param name="ability">Ability.</param>
+	public void removeAbility(Ability ability){
+		bool removed = abilities.Remove (ability);
+		if (removed) {
+			Debug.Log (ability.getName () + " removed.");
+		} else {
+			Debug.Log ("Either " + ability.getName() + " was not removed, or item does not exist");
+		}
 	}
 }
