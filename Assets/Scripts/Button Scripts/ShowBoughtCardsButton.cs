@@ -23,6 +23,7 @@ public class ShowBoughtCardsButton : MonoBehaviour {
 	void toggleBoughtCardsUI(){
 		if (!boughtCardsUI.activeSelf) {
 			boughtCardsUI.SetActive (true);
+			boughtCardsUI.GetComponent<PlayerBoughtCardsList> ().needs_to_be_updated = true;
 			text.text = HIDE_CARDS;
 		} else {
 			boughtCardsUI.SetActive (false);
