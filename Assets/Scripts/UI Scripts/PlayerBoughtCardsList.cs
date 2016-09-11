@@ -37,7 +37,23 @@ public class PlayerBoughtCardsList : MonoBehaviour {
 				RectTransform button_transform = button.GetComponent<RectTransform> ();
 				button_transform.anchorMax = new Vector2 (0, 1);
 				button_transform.anchorMin = new Vector2 (0, 1);
-				button.transform.localPosition = new Vector3 ((i%buttons_per_row) * button_transform.rect.width + x_init_buffer + x_spacing, (i/buttons_per_row) * button_transform.rect.height + x_init_buffer + x_spacing);
+
+				//Debug.Log ("Rect Width: " + button_transform.rect.width);
+				//Debug.Log ("Rect Height: " + button_transform.rect.height);
+
+				/*This is a horrible line of code
+				 * i%buttons_per_row allows rows of different sizes
+				 * We multiply this by the width of the gameobject so the full button is on the screen
+				 * We add the buffer and the spacing so that there is spacing for the first button on the screen with the left edge, and that there is space betwen buttons
+				 * The same methodology follows for y for the buffers and spacing
+				 * i/buttons_per_row means that a new row is created every buttons_per_row gameobjects
+				 * We add the PlayerBoughtCardsList parent interface's height initally to the y component because intially the program calculates distance values from the lower left.
+				 * All ther values are subtracted for this same reason (we subtract to move down) 
+				 */
+				button.transform.position = new Vector3 ((i%buttons_per_row) * button_transform.rect.width + x_init_buffer + x_spacing*(i%buttons_per_row) + button_transform.rect.width/2,
+					this.gameObject.GetComponent<RectTransform>().rect.height - (i/buttons_per_row) * button_transform.rect.height - y_init_buffer - y_spacing*(i/buttons_per_row) - button_transform.rect.height/2);
+
+				//Debug.Log (abilities [i].getName () + " set at " + button.transform.position);
 
 				//Setting the text field
 				button.transform.Find("Ability Name and Sell Value").GetComponent<Text>().text = abilities[i].getName() + "\nSell Value: " + Converter.convertCostsToString(abilities[i].getCost());
