@@ -26,6 +26,7 @@ public class ShowBoughtCardsButton : MonoBehaviour {
 			boughtCardsUI.GetComponent<PlayerBoughtCardsList> ().needs_to_be_updated = true;
 			text.text = HIDE_CARDS;
 		} else {
+			boughtCardsUI.GetComponent<PlayerBoughtCardsList> ().needs_to_be_updated = true;
 			boughtCardsUI.SetActive (false);
 			text.text = SHOW_CARDS;
 		}

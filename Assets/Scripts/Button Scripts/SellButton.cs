@@ -28,8 +28,10 @@ public class SellButton : MonoBehaviour {
 		for (int i = 0; i < Enum.GetNames (typeof(ShardType)).Length; i++) {
 			player.addAmountToShardType (ability_to_sell.getCost () [i], (ShardType)i);
 		}
-		parentUI.toggleNeedsToBeUpdated ();
+		//parentUI.toggleNeedsToBeUpdated ();
 		GameObject.Find (ability_to_sell.getName () + " Button").GetComponent<AbilityButton> ().isBought = false;
 		player.removeAbility (ability_to_sell);
+		Destroy (this.gameObject);
+
 	}
 }
