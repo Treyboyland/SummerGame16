@@ -24,6 +24,13 @@ public enum AbilityType{
 	ARMOR,
 }
 
+public enum CardType{
+	NORMAL,
+	MULTIPLIER,
+	BOOSTER,
+}
+
+
 public enum Element{
 	FIRE,
 	WATER,

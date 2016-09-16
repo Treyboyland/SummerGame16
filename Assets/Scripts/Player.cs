@@ -7,7 +7,12 @@ public class Player : MonoBehaviour {
 
 	public int[] shardCounts = new int[Enum.GetNames(typeof(ShardType)).Length];
 	public List<Ability> abilities = new List<Ability> (); 
+	public Deck player_customized_deck;
 
+	public Deck game_special_cards;
+	public Deck game_hand;
+	public Deck game_acquired_cards;
+	public bool isComputer;
 
 	// Use this for initialization
 	void Start () {
